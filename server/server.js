@@ -13,6 +13,14 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('disconnected from client');
     });
+    socket.emit('newMessage', {
+        _form: 'Arup',
+        _text: 'This is test message',
+        _when: new Date().getTime()
+    });
+    socket.on('createMessage', (message) => {
+        console.log('new Message:', message);
+    });
 });
 server.listen(port, () => {
     console.log(`Server up on ${port}`);
