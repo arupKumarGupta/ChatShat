@@ -13,6 +13,17 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('disconnected from client');
     });
+    socket.emit('newMessage',{
+        from:'admin',
+        text:'Welcome to the chat',
+        createdAt:new Date().getTime()
+        
+    });
+    socket.broadcast.emit('newMessage',{
+        from:'admin',
+        text:'New User Joined',
+        createdAt:new Date().getTime()
+    });
     socket.on('createMessage', (message) => {
         console.log('new Message:', message);
         io.emit("newMessage", {
@@ -20,6 +31,12 @@ io.on('connection', (socket) => {
             text: message.text,
             createdAt: new Date().getTime()
         });
+
+        /* socket.broadcast.emit("newMessage", {
+            from: message.from,
+            text: message.text,
+            createdAt: new Date().getTime()
+        }); */
     });
 });
 server.listen(port, () => {
