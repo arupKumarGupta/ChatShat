@@ -7,6 +7,42 @@
     font-size: .95rem;
 }
 
+#loader-overlay::before {
+    content: url('../imgs/loader.gif');
+    width: 50px;
+    display: none;
+}
+
+.message-body {
+    background: #2c5e8126;
+    float: left;
+    margin: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.message-header {}
+
+.message-from {
+    color: #3a6513e0;
+    padding-top: 5px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.message-time {
+    color: #25480abd;
+    float: right;
+    margin-top: 3px;
+}
+
+.message-content {
+    margin-bottom: 5px;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
 ul,
 li {
     list-style-position: inside;

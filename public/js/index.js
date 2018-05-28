@@ -7,19 +7,27 @@
         console.log('disconnected from server');
     });
     socket.on('newMessage', function (data) {
-        console.log("New message:", data);
-        let messageTime = moment(data.createdAt).format('DD-MMM-YYYY hh:mm a');
-        let li = $(`<li>${data.from} ${messageTime}:${data.text}</li>`);
-        $('#message-list').append(li);
+
+        let messageTime = moment(data.createdAt).format('hh:mm a');
+        let simpleMessageTemplate = $('#simpleMessage').html();
+        let html = Mustache.render(simpleMessageTemplate, {
+            from: data.from,
+            text: data.text,
+            createdAt: messageTime
+        });
+        $('#message-list').append(html);
     });
 
     socket.on('newLocationMessage', function (locationData) {
-        let messageTime = moment(locationData.createdAt).format('DD-MMM-YYYY hh:mm a');
-        let li = $(`<li>${locationData.from} ${messageTime} :</li>`);
-        let a = $('<a target="_blank">Open in maps</a>')
-        a.attr('href', locationData.url);
-        li.append(a);
-        $('#message-list').append(li);
+        let messageTime = moment(locationData.createdAt).format('hh:mm a');
+        let locationMessageTemplate = $('#locationMessage').html();
+        let html = Mustache.render(locationMessageTemplate, {
+            from: locationData.from,
+            url: locationData.url,
+            createdAt: messageTime
+        });
+
+        $('#message-list').append(html);
     });
 
     $(function () {
