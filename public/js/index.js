@@ -8,12 +8,14 @@
     });
     socket.on('newMessage', function (data) {
         console.log("New message:", data);
-        let li = $(`<li>${data.from}:${data.text}</li>`);
+        let messageTime = moment(data.createdAt).format('DD-MMM-YYYY hh:mm a');
+        let li = $(`<li>${data.from} ${messageTime}:${data.text}</li>`);
         $('#message-list').append(li);
     });
 
     socket.on('newLocationMessage', function (locationData) {
-        let li = $(`<li>${locationData.from}:</li>`);
+        let messageTime = moment(locationData.createdAt).format('DD-MMM-YYYY hh:mm a');
+        let li = $(`<li>${locationData.from} ${messageTime} :</li>`);
         let a = $('<a target="_blank">Open in maps</a>')
         a.attr('href', locationData.url);
         li.append(a);
