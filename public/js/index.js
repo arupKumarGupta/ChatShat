@@ -16,6 +16,7 @@
             createdAt: messageTime
         });
         $('#message-list').append(html);
+        scrollToBottom();
     });
 
     socket.on('newLocationMessage', function (locationData) {
@@ -28,7 +29,24 @@
         });
 
         $('#message-list').append(html);
+        scrollToBottom();
     });
+
+    function scrollToBottom() {
+        //selectors and  heights
+        var messages = $("#message-list");
+
+        var clientHeight = messages.prop('clientHeight');
+        var scrollTop = messages.prop('scrollTop');
+        var scrollHeight = messages.prop('scrollHeight');
+        var newMessage = messages.children('li:last-child');
+        var newMessageHeight = newMessage.innerHeight();
+        var lastMessageHeight = newMessage.prev().innerHeight();
+
+        if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+            messages.scrollTop(scrollHeight);
+        }
+    }
 
     $(function () {
         var message = $('[name=message]');
