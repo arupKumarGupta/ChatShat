@@ -14,10 +14,15 @@
 }
 
 .message-body {
+    display: block;
+}
+
+.message-wrapper {
     background: #2c5e8126;
-    float: left;
     margin: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    width: fit-content;
 }
 
 .message-header {}
