@@ -1,10 +1,31 @@
 ($, function () {
     var socket = io();
     socket.on('connect', function () {
-        console.log('connected to server');
+        let params = $.deparam(window.location.search);
+        socket.emit('join', params, function (error) {
+            if (error) {
+                alert(error);
+                window.location.href = '/';
+            } else {
+                console.log("No error");
+            }
+        });
     });
     socket.on('disconnect', function () {
         console.log('disconnected from server');
+    });
+    socket.on('updateUsersList', function (users) {
+        console.log(users);
+        let ol = $('<ol></ol>');
+        users.forEach(function (name) {
+            let singleUser = $('#user').html();
+            let html = Mustache.render(singleUser, {
+                name
+            });
+            ol.append(html);
+        });
+
+        $('#peopleView').html('').append(ol);
     });
     socket.on('newMessage', function (data) {
 

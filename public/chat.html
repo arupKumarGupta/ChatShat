@@ -33,35 +33,41 @@
 
 
     <script type="text/template" id="simpleMessage">
-        <li class="container message-body">
-            <div class="message-header">
-                <h4 class="message-from">{{from}}
-                    <span class="message-time">{{createdAt}}</span>
-                </h4>
+        <li class="message-body">
+            <div class="message-wrapper">
+                <div class="message-header">
+                    <h4 class="message-from">{{from}}
+                        <span class="message-time">{{createdAt}}</span>
+                    </h4>
 
+                </div>
+                <div class="message-content">
+                    {{text}}
+
+                </div>
             </div>
-            <div class="message-content">
-                {{text}}
-
-            </div>
-
         </li>
     </script>
     <script type="text/template" id="locationMessage">
-        <li class="container message-body">
-            <div class="message-header">
-                <h4 class="message-from">{{from}}
-                    <span class="message-time">{{createdAt}}</span>
-                </h4>
+        <li class="message-body">
+            <div class="message-wrapper">
+                <div class="message-header">
+                    <h4 class="message-from">{{from}}
+                        <span class="message-time">{{createdAt}}</span>
+                    </h4>
 
-            </div>
-            <div class="message-content">
-                <a href="{{url}}" target="_blank">
-                    <img width="150px" height="150px" src="https://camo.githubusercontent.com/38a856825bffc20fc79841ef95e9bd681025de65/687474703a2f2f7575706c6f61642e69722f66696c65732f7a626d655f676d6170732e706e67"
-                        alt="My Location" class="img rounded">
-                </a>
+                </div>
+                <div class="message-content">
+                    <a href="{{url}}" target="_blank">
+                        <img width="150px" height="150px" src="https://camo.githubusercontent.com/38a856825bffc20fc79841ef95e9bd681025de65/687474703a2f2f7575706c6f61642e69722f66696c65732f7a626d655f676d6170732e706e67"
+                            alt="My Location" class="img rounded">
+                    </a>
+                </div>
             </div>
         </li>
+    </script>
+    <script type="text/template" id="user">
+        <li>{{name}}</li>
     </script>
     <div id="loader-overlay">
 
@@ -71,6 +77,7 @@
     <script src="libs/js/bootstrap.min.js"></script>
     <script src="libs/js/moment-with-locales.min.js"></script>
     <script src="libs/js/mustache.min.js"></script>
+    <script src="libs/js/deparam.js"></script>
     <script src="js/chat.js"></script>
 </body>
 
